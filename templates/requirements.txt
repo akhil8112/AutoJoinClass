@@ -1,0 +1,5 @@
+Flask
+schedule
+selenium
+webdriver-manager
+gunicorn
