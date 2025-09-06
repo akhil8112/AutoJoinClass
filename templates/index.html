@@ -317,63 +317,71 @@
     </div>
 
     <script>
-        // --- FIX: All scripts are now correctly placed inside this event listener ---
-        document.addEventListener('DOMContentLoaded', () => {
-            // Script for Copy-to-Clipboard Functionality
-            const copyButtons = document.querySelectorAll('.copy-btn');
-            copyButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const commandText = button.previousElementSibling.innerText;
-                    navigator.clipboard.writeText(commandText).then(() => {
-                        const originalText = button.innerText;
-                        button.innerText = 'Copied!';
-                        button.classList.add('copied');
-                        setTimeout(() => {
-                            button.innerText = originalText;
-                            button.classList.remove('copied');
-                        }, 2000);
-                    });
+    document.addEventListener('DOMContentLoaded', () => {
+        // Script for Copy-to-Clipboard Functionality
+        const copyButtons = document.querySelectorAll('.copy-btn');
+        copyButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const commandText = button.previousElementSibling.innerText;
+                navigator.clipboard.writeText(commandText).then(() => {
+                    const originalText = button.innerText;
+                    button.innerText = 'Copied!';
+                    button.classList.add('copied');
+                    setTimeout(() => {
+                        button.innerText = originalText;
+                        button.classList.remove('copied');
+                    }, 2000);
                 });
             });
-
-            // Script for Password Visibility Toggle
-            const togglePassword = document.querySelector('#togglePassword');
-            const passwordInput = document.querySelector('#password');
-            const eyeOpen = document.querySelector('#eye-open');
-            const eyeClosed = document.querySelector('#eye-closed');
-            togglePassword.addEventListener('click', function () {
-                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-                passwordInput.setAttribute('type', type);
-                eyeOpen.style.display = (type === 'password') ? 'block' : 'none';
-                eyeClosed.style.display = (type === 'password') ? 'none' : 'block';
-            });
-
-            // Script for Help Modal
-            const helpModal = document.getElementById('helpModal');
-            const closeModalBtn = document.getElementById('closeModalBtn');
-            const helpBtn = document.getElementById('helpBtn');
-            const troubleBtn = document.getElementById('troubleBtn');
-
-            const openModal = () => {
-                helpModal.style.display = 'flex';
-            };
-            const closeModal = () => {
-                helpModal.style.display = 'none';
-            };
-
-            // Event listeners to open the modal
-            helpBtn.addEventListener('click', openModal);
-            troubleBtn.addEventListener('click', openModal);
-
-            // Event listeners to close the modal
-            closeModalBtn.addEventListener('click', closeModal);
-            helpModal.addEventListener('click', (event) => {
-                if (event.target === helpModal) {
-                    closeModal();
-                }
-            });
         });
-    </script>
+
+        // Script for Password Visibility Toggle
+        const togglePassword = document.querySelector('#togglePassword');
+        const passwordInput = document.querySelector('#password');
+        const eyeOpen = document.querySelector('#eye-open');
+        const eyeClosed = document.querySelector('#eye-closed');
+        togglePassword.addEventListener('click', function () {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            eyeOpen.style.display = (type === 'password') ? 'block' : 'none';
+            eyeClosed.style.display = (type === 'password') ? 'none' : 'block';
+        });
+
+        // Script for Help Modal
+        const helpModal = document.getElementById('helpModal');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const helpBtn = document.getElementById('helpBtn');
+
+        // This button was not defined in your original script block, let's define it.
+        const troubleBtn = document.getElementById('troubleBtn');
+
+
+        const openModal = () => {
+            helpModal.style.display = 'flex';
+        };
+        const closeModal = () => {
+            helpModal.style.display = 'none';
+        };
+
+        // Event listeners to open the modal
+        helpBtn.addEventListener('click', openModal);
+
+        // Check if troubleBtn exists before adding an event listener
+        if (troubleBtn) {
+            troubleBtn.addEventListener('click', openModal);
+        }
+        
+
+        // Event listeners to close the modal
+        closeModalBtn.addEventListener('click', closeModal);
+        helpModal.addEventListener('click', (event) => {
+            if (event.target === helpModal) {
+                closeModal();
+            }
+        });
+        
+    }); // <-- FIX: This was in the wrong place
+</script>
 
 </body>
 </html>
