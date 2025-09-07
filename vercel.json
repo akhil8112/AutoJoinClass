@@ -11,8 +11,6 @@
       "src": "/(.*)",
       "dest": "app.py"
     }
-  ],
-  "analytics": {
-    "disabled": false
-  }
+  ]
 }
+
