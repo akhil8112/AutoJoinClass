@@ -91,7 +91,7 @@ def open_class_and_login():
         print("Waiting for the 11 AM class to appear in the schedule...")
 
         # Target the <a> tag directly using both the time and lecture name
-        class_meeting_xpath = "//a[contains(@class, 'fc-time-grid-event') and contains(@title, 'coursexyz-Lecture') and contains(., '11:00 - 1:00')]"
+        class_meeting_xpath = "//a[contains(@class, 'fc-time-grid-event') and contains(@title, 'coursexyz-Lecture')]"
 
         # Wait until the element is visible and clickable
         class_meeting_element = wait.until(
